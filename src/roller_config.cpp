@@ -5,3 +5,10 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #include "main.h"
+
+roller_states get_active_roller_state() { return active_roller_state; }
+
+void set_active_roller_state(roller_states new_state, int new_intake_speed) {
+  active_roller_state = new_state;
+  intake_speed = std::abs(intake_speed);
+}

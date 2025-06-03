@@ -5,13 +5,12 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #include "main.h"
-
-#include "roller_config.hpp"
-
+ 
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
 /////
+
 
 // Chassis constructor
 ez::Drive chassis(

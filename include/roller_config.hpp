@@ -15,10 +15,7 @@ enum roller_states {
 };
 
 inline roller_states active_roller_state = STOP;
-inline roller_states get_active_roller_state() { return active_roller_state; }
+roller_states get_active_roller_state();
 inline int intake_speed = 127;
 
-inline void set_active_roller_state(roller_states new_state, int new_intake_speed = 127) {
-  active_roller_state = new_state;
-  intake_speed = std::abs(intake_speed);
-}
+void set_active_roller_state(roller_states new_state, int new_intake_speed = 127);
