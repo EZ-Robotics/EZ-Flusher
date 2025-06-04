@@ -35,8 +35,8 @@ extern Drive chassis;
 // Intake Config
 /////
 
-inline pros::Motor intake_left(-6);  // Motor
-inline pros::Motor intake_right(5);  // Motor
+inline pros::Motor intake_left(1);    // Motor
+inline pros::Motor intake_right(-6);  // Motor
 
 // Hook antijam variables
 inline const int intake_wait_time = 40;      // The time in ms that the intake has to have 0 velocity before deciding a jam is happening
