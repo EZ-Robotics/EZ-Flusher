@@ -43,6 +43,11 @@ void intake_task() {
       output_speed = -intake_speed;
     }
 
+    // Side rollers are pooping
+    else if (get_active_roller_state() == POOP) {
+      output_speed = intake_speed;
+    }
+
     // Side rollers rae stopped
     else if (get_active_roller_state() == STOP) {
       output_speed = 0;

@@ -80,6 +80,7 @@ inline antijam conveyor_top_antijam(&conveyor_top, conveyor_top_wait_time, conve
 inline pros::controller_digital_e_t intake_button = pros::E_CONTROLLER_DIGITAL_L2;
 inline pros::controller_digital_e_t outtake_button = pros::E_CONTROLLER_DIGITAL_L1;
 inline pros::controller_digital_e_t score_button = pros::E_CONTROLLER_DIGITAL_R2;
+inline pros::controller_digital_e_t poop_button = pros::E_CONTROLLER_DIGITAL_R1;
 
 inline void joystick_opcontrol() {
   chassis.opcontrol_tank();  // Tank control

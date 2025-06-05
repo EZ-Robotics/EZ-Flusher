@@ -5,12 +5,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
 #include "main.h"
- 
+
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
 /////
-
 
 // Chassis constructor
 ez::Drive chassis(
@@ -258,6 +257,8 @@ void opcontrol() {
       set_active_roller_state(INTAKE);
     } else if (master.get_digital(outtake_button)) {
       set_active_roller_state(OUTTAKE);
+    } else if (master.get_digital(poop_button)) {
+      set_active_roller_state(POOP);
     } else {
       set_active_roller_state(STOP);
     }

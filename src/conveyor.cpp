@@ -18,6 +18,8 @@ void conveyor_bottom_task() {
       conveyor_bottom_set(-127);
     } else if (get_active_roller_state() == SCORE) {
       conveyor_bottom_set(127);
+    } else if (get_active_roller_state() == POOP) {
+      conveyor_bottom_set(127);
     } else {
       conveyor_bottom_set(0);
     }
@@ -36,6 +38,8 @@ void conveyor_top_task() {
       conveyor_top_set(-127);
     } else if (get_active_roller_state() == SCORE) {
       conveyor_top_set(127);
+    } else if (get_active_roller_state() == POOP) {
+      conveyor_top_set(-127);
     } else {
       conveyor_top_set(0);
     }
