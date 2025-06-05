@@ -41,7 +41,10 @@ void antijam::set_motors_raw(int input) {
 
 void antijam::set_motors(int input) {
   actual_speed = input;
-  if (input != last_input_speed) set_motors_raw(input);
+  if (input != last_input_speed) {
+    set_motors_raw(input);
+    can_reset = true;
+  }
   last_input_speed = input;
 }
 
@@ -75,10 +78,17 @@ int antijam::stuck_try_time_get() { return stuck_retry_timer; }
 
 int antijam::real_speed() { return actual_speed; }
 
+void antijam::reset_timers() {
+  if (!can_reset) return;
+  can_reset = false;
+
+  is_jammed = false;
+  jam_counter = 0;
+}
+
 void antijam::antijam_function() {
   pros::delay(2000);  // Let IMU and other stuff initialize before starting this task
 
-  int jam_counter = 0;
   while (true) {
     // Only run antijam when enabled
     if (enabled()) {
@@ -115,6 +125,8 @@ void antijam::antijam_function() {
       // Reset jam counter when antijam is disabled
       jam_counter = 0;
     }
+
+    reset_timers();
 
     // printf("is enabled: %i      is jammed: %i   real speed: %i   min speed: %i   vel: %f      counter: %i\n", (int)enabled(), (int)is_jammed, real_speed(), min_activate_speed_get(), get_velocity(), jam_counter);
 

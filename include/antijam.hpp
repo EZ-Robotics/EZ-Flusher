@@ -40,10 +40,13 @@ class antijam {
   void stick_disable();
   bool stick_enabled();
 
+  void reset_timers();
+
   void antijam_function();
   pros::Task antijam_task;
 
  private:
+  int jam_counter = 0;
   int stuck_retry_timer = 0;
   bool is_stuck = false;
   int last_input_speed = 0;
@@ -54,4 +57,5 @@ class antijam {
   int outtake_time = 0;
   int min_speed = 0;
   bool is_jammed = false;
+  bool can_reset = false;
 };
