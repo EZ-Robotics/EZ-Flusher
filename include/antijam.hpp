@@ -11,8 +11,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 class antijam {
  public:
-  antijam(pros::Motor *input_motor, int input_wait_time = 30, int input_outtake_time = 100, int min_speed = 20);
-  antijam(pros::MotorGroup *input_motors, int input_wait_time = 30, int input_outtake_time = 100, int min_speed = 20);
+  antijam(pros::Motor *input_motor, int input_wait_time = 30, int input_outtake_time = 100, int min_speed = 20, int input_stuck_retry_timer = 0);
+  antijam(pros::MotorGroup *input_motors, int input_wait_time = 30, int input_outtake_time = 100, int min_speed = 20, int input_stuck_retry_timer = 0);
 
   pros::Motor *motor;
   pros::MotorGroup *motors;
@@ -25,6 +25,8 @@ class antijam {
   int outtake_time_get();
   void min_activate_speed_set(int input);
   int min_activate_speed_get();
+  void stuck_retry_time_set(int input);
+  int stuck_try_time_get();
 
   double get_velocity();
 
@@ -34,10 +36,16 @@ class antijam {
   void disable();
   bool enabled();
 
+  void stick_enable();
+  void stick_disable();
+  bool stick_enabled();
+
   void antijam_function();
   pros::Task antijam_task;
 
  private:
+  int stuck_retry_timer = 0;
+  bool is_stuck = false;
   int last_input_speed = 0;
   void set_motors_raw(int input);
   int actual_speed = 0;

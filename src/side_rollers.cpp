@@ -16,38 +16,21 @@ inline void intake_set(int input) {
 void intake_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
   int output_speed = 0;
-  int jam_timer = 0;
-  bool is_jammed_while_scoring = false;
 
   while (true) {
-    // While scoring, disable antijam and enable the stronger custom antijam for the side rollers
-    // When not scoring, reset the intake jam flag
+    // Run normal antijam when intaking, outtaking, pooping
+    // Run stronger antijam when scoring that will delay trying to unjam
     if (get_active_roller_state() != SCORE) {
-      jam_timer = 0;
-      is_jammed_while_scoring = false;
-      intake_left_antijam.enable();
-      intake_right_antijam.enable();
+      intake_left_antijam.stick_disable();
+      intake_right_antijam.stick_disable();
     } else {
-      intake_left_antijam.disable();
-      intake_right_antijam.disable();
+      intake_left_antijam.stick_enable();
+      intake_right_antijam.stick_enable();
     }
 
     // Side rollers are scoring
     if (get_active_roller_state() == SCORE) {
-      // Check if the intakes are stalled or drawing too many amps
-      if ((fabs(intake_left.get_actual_velocity()) == 0.0 || intake_left.is_over_current()) ||
-          (fabs(intake_right.get_actual_velocity()) == 0.0 || intake_right.is_over_current())) {
-        // If the intakes have been jammed while scoring for ~50ms, set this flag to true
-        if (jam_timer > intake_wait_time)
-          is_jammed_while_scoring = true;
-
-        jam_timer += ez::util::DELAY_TIME;
-      } else {
-        jam_timer = 0;
-      }
-
-      // If jammed, don't run the intake.  If not jammed, run the intake like normal
-      output_speed = is_jammed_while_scoring ? 0 : intake_speed;
+      output_speed = intake_speed;
     }
 
     // Side rollers are intaking

@@ -39,12 +39,13 @@ inline pros::Motor intake_left(1);    // Motor
 inline pros::Motor intake_right(-6);  // Motor
 
 // Hook antijam variables
-inline const int intake_wait_time = 40;      // The time in ms that the intake has to have 0 velocity before deciding a jam is happening
-inline const int intake_outtake_time = 100;  // The time to outtake for to unjam
-inline const int intake_min_speed = 20;      // Minimum speed that allows antijam to trigger (out of 127)
+inline const int intake_wait_time = 30;           // The time in ms that the intake has to have 0 velocity before deciding a jam is happening
+inline const int intake_outtake_time = 100;       // The time to outtake for to unjam
+inline const int intake_stuck_retry_time = 1000;  // When scoring, wait before trying to unjam the intake
+inline const int intake_min_speed = 20;           // Minimum speed that allows antijam to trigger (out of 127)
 
-inline antijam intake_left_antijam(&intake_left, intake_wait_time, intake_outtake_time, intake_min_speed);    // Create the antijam
-inline antijam intake_right_antijam(&intake_right, intake_wait_time, intake_outtake_time, intake_min_speed);  // Create the antijam
+inline antijam intake_left_antijam(&intake_left, intake_wait_time, intake_outtake_time, intake_min_speed, intake_stuck_retry_time);    // Create the antijam
+inline antijam intake_right_antijam(&intake_right, intake_wait_time, intake_outtake_time, intake_min_speed, intake_stuck_retry_time);  // Create the antijam
 
 /////
 // Bottom conveyor config
