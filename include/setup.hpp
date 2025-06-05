@@ -69,9 +69,9 @@ inline pros::Motor conveyor_top(-7);  // Motor
 // Hook antijam variables
 inline const int conveyor_top_wait_time = 40;      // The time in ms that the intake has to have 0 velocity before deciding a jam is happening
 inline const int conveyor_top_outtake_time = 150;  // The time to outtake for to unjam
-inline const int conveyor_top_min_speed = 20;      // Minimum speed that allows antijam to trigger (out of 127)
+inline const int conveyor_top_min_speed = 15;      // Minimum speed that allows antijam to trigger (out of 127)
 
-inline antijam conveyor_top_antijam(&conveyor_top, conveyor_top_wait_time, conveyor_top_outtake_time, conveyor_top_min_speed);  // Create the antijam
+inline antijam conveyor_top_antijam(&conveyor_top, conveyor_top_wait_time, conveyor_top_outtake_time, conveyor_top_min_speed, 180000);  // Create the antijam
 
 /////
 // Opcontrol config

@@ -32,6 +32,14 @@ pros::Task Conveyor_Bottom_Task(conveyor_bottom_task);  // Create the task, this
 void conveyor_top_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
   while (true) {
+    // Run normal antijam when scoring, outtaking, pooping
+    // Run stronger antijam when intaking that will delay trying to unjam
+    if (get_active_roller_state() != INTAKE) {
+      conveyor_top_antijam.stick_disable();
+    } else {
+      conveyor_top_antijam.stick_enable();
+    }
+
     if (get_active_roller_state() == INTAKE) {
       conveyor_top_set(20);
     } else if (get_active_roller_state() == OUTTAKE) {
