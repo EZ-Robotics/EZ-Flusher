@@ -88,7 +88,7 @@ void antijam::antijam_function() {
 
         // Set these variables based on if the code is going to "stick" or not
         int motor_speed = stick_enabled() ? 0 : -127 * ez::util::sgn(real_speed());
-        int timeout = stick_enabled() ? 1000 : outtake_time_get();
+        int timeout = stick_enabled() ? stuck_try_time_get() : outtake_time_get();
 
         set_motors_raw(motor_speed);
         if (jam_counter > timeout) {
