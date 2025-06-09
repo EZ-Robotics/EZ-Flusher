@@ -9,9 +9,11 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 enum roller_states {
   STOP = 0,
   INTAKE = 1,
-  OUTTAKE = 2,
-  SCORE = 3,
-  POOP = 4,
+  INTAKE_ONLY = 2,
+  OUTTAKE = 3,
+  OUTTAKE_ONLY = 4,
+  SCORE = 5,
+  POOP = 6,
 };
 
 inline roller_states active_roller_state = STOP;

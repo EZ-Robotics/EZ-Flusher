@@ -65,11 +65,12 @@ inline antijam conveyor_bottom_antijam(&conveyor_bottom, conveyor_bottom_wait_ti
 /////
 
 inline pros::Motor conveyor_top(-7);  // Motor
+inline pros::Optical optical(15);     // Optical sensor
 
 // Hook antijam variables
 inline const int conveyor_top_wait_time = 40;      // The time in ms that the intake has to have 0 velocity before deciding a jam is happening
 inline const int conveyor_top_outtake_time = 150;  // The time to outtake for to unjam
-inline const int conveyor_top_min_speed = 15;      // Minimum speed that allows antijam to trigger (out of 127)
+inline const int conveyor_top_min_speed = 20;      // Minimum speed that allows antijam to trigger (out of 127)
 
 inline antijam conveyor_top_antijam(&conveyor_top, conveyor_top_wait_time, conveyor_top_outtake_time, conveyor_top_min_speed, 180000);  // Create the antijam
 
@@ -81,6 +82,7 @@ inline pros::controller_digital_e_t intake_button = pros::E_CONTROLLER_DIGITAL_L
 inline pros::controller_digital_e_t outtake_button = pros::E_CONTROLLER_DIGITAL_L1;
 inline pros::controller_digital_e_t score_button = pros::E_CONTROLLER_DIGITAL_R2;
 inline pros::controller_digital_e_t poop_button = pros::E_CONTROLLER_DIGITAL_R1;
+inline pros::controller_digital_e_t shift_button = pros::E_CONTROLLER_DIGITAL_RIGHT;
 
 inline void joystick_opcontrol() {
   chassis.opcontrol_tank();  // Tank control

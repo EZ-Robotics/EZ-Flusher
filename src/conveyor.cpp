@@ -34,11 +34,11 @@ void conveyor_top_task() {
   while (true) {
     // Run normal antijam when scoring, outtaking, pooping
     // Run stronger antijam when intaking that will delay trying to unjam
-    if (get_active_roller_state() != INTAKE) {
-      conveyor_top_antijam.stick_disable();
-    } else {
-      conveyor_top_antijam.stick_enable();
-    }
+    // if (get_active_roller_state() != INTAKE) {
+    //   conveyor_top_antijam.stick_disable();
+    // } else {
+    //   conveyor_top_antijam.stick_enable();
+    // }
 
     if (get_active_roller_state() == INTAKE) {
       conveyor_top_set(20);

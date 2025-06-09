@@ -34,12 +34,12 @@ void intake_task() {
     }
 
     // Side rollers are intaking
-    else if (get_active_roller_state() == INTAKE) {
+    else if (get_active_roller_state() == INTAKE || get_active_roller_state() == INTAKE_ONLY) {
       output_speed = intake_speed;
     }
 
     // Side rollers are outtaking
-    else if (get_active_roller_state() == OUTTAKE) {
+    else if (get_active_roller_state() == OUTTAKE || get_active_roller_state() == OUTTAKE_ONLY) {
       output_speed = -intake_speed;
     }
 

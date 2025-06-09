@@ -254,9 +254,9 @@ void opcontrol() {
     if (master.get_digital(score_button)) {
       set_active_roller_state(SCORE);
     } else if (master.get_digital(intake_button)) {
-      set_active_roller_state(INTAKE);
+      set_active_roller_state((roller_states)((int)INTAKE + (int)master.get_digital(shift_button)));
     } else if (master.get_digital(outtake_button)) {
-      set_active_roller_state(OUTTAKE);
+      set_active_roller_state((roller_states)((int)OUTTAKE + (int)master.get_digital(shift_button)));
     } else if (master.get_digital(poop_button)) {
       set_active_roller_state(POOP);
     } else {
