@@ -6,6 +6,19 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "main.h"
 
+int limited_power = 1250;
+int full_power = 2500;
+
+void intake_current_limit() {
+  intake_left.set_current_limit(limited_power);
+  intake_right.set_current_limit(limited_power);
+}
+
+void intake_full_power() {
+  intake_left.set_current_limit(full_power);
+  intake_right.set_current_limit(full_power);
+}
+
 inline void intake_left_set(int input) { intake_left_antijam.set_motors(input); }
 inline void intake_right_set(int input) { intake_right_antijam.set_motors(input); }
 inline void intake_set(int input) {
@@ -23,9 +36,11 @@ void intake_task() {
     if (get_active_roller_state() != SCORE) {
       intake_left_antijam.stick_disable();
       intake_right_antijam.stick_disable();
+      intake_full_power();
     } else {
       intake_left_antijam.stick_enable();
       intake_right_antijam.stick_enable();
+      intake_current_limit();
     }
 
     // Side rollers are scoring
