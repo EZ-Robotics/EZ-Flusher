@@ -245,20 +245,25 @@ void ez_template_extras() {
 void opcontrol() {
   chassis.drive_brake_set(opcontrol_brake);
 
+  set_alliance_color(RED);
+
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
 
     joystick_opcontrol();
 
+    color_detection_opcontrol();
+
     if (master.get_digital(score_button)) {
-      set_active_roller_state(SCORE);
+      if (master.get_digital(shift_button))
+        set_active_roller_state(POOP);
+      else
+        set_active_roller_state(SCORE);
     } else if (master.get_digital(intake_button)) {
       set_active_roller_state((roller_states)((int)INTAKE + (int)master.get_digital(shift_button)));
     } else if (master.get_digital(outtake_button)) {
       set_active_roller_state((roller_states)((int)OUTTAKE + (int)master.get_digital(shift_button)));
-    } else if (master.get_digital(poop_button)) {
-      set_active_roller_state(POOP);
     } else {
       set_active_roller_state(STOP);
     }

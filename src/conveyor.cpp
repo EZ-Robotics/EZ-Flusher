@@ -45,7 +45,11 @@ void conveyor_top_task() {
     } else if (get_active_roller_state() == OUTTAKE) {
       conveyor_top_set(-127);
     } else if (get_active_roller_state() == SCORE) {
-      conveyor_top_set(127);
+      if (get_current_ball_color() != get_alliance_color() && get_alliance_color() != NONE && get_current_ball_color() != NONE)
+        conveyor_top_set(-127);
+      else
+        conveyor_top_set(127);
+
     } else if (get_active_roller_state() == POOP) {
       conveyor_top_set(-127);
     } else {

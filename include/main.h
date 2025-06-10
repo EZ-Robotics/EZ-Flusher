@@ -46,6 +46,7 @@
 // More includes here...
 #include "antijam.hpp"
 #include "autons.hpp"
+#include "color_detection.hpp"
 #include "conveyor.hpp"
 #include "roller_config.hpp"
 #include "setup.hpp"
