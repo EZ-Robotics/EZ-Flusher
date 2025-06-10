@@ -14,6 +14,8 @@ void auto_poop_disable() { auto_poop_enable_bool = false; }
 void auto_poop_enable() { auto_poop_enable_bool = true; }
 bool auto_poop_enabled() { return auto_poop_enable_bool; }
 
+bool is_color_sorting() { return is_color_sorting_bool; }
+
 void color_detection_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
 
@@ -23,6 +25,9 @@ void color_detection_task() {
   int red_timer = 0;
 
   int wait_for_timer = 50;  // ms to wait
+
+  int color_sort_timer = 0;
+  int color_sort_for_this_long = 1000;
   while (true) {
     // Run this only when auto pooping is enabled
     if (auto_poop_enabled()) {
@@ -33,7 +38,7 @@ void color_detection_task() {
         if (blue_timer >= wait_for_timer) {
           blue_timer = wait_for_timer;
           current_ball_color = BLUE;
-          printf("BLUE\n");
+          // printf("BLUE\n");
         }
 
         blue_timer += ez::util::DELAY_TIME;
@@ -45,7 +50,7 @@ void color_detection_task() {
         if (red_timer >= wait_for_timer) {
           red_timer = wait_for_timer;
           current_ball_color = RED;
-          printf("RED\n");
+          // printf("RED\n");
         }
 
         red_timer += ez::util::DELAY_TIME;
@@ -58,6 +63,19 @@ void color_detection_task() {
         red_timer = 0;
         current_ball_color = NONE;
       }
+
+      // If the wrong ball is detected
+      if (get_current_ball_color() != get_alliance_color() && get_alliance_color() != NONE && get_current_ball_color() != NONE) {
+        is_color_sorting_bool = true;
+      }
+
+      if (is_color_sorting_bool) {
+        if (color_sort_timer >= color_sort_for_this_long) {
+          is_color_sorting_bool = false;
+          color_sort_timer = 0;
+        }
+        color_sort_timer += ez::util::DELAY_TIME;
+      }
     }
 
     // Disable color sort
@@ -66,6 +84,8 @@ void color_detection_task() {
       blue_timer = 0;
       red_timer = 0;
       current_ball_color = NONE;
+      color_sort_timer = 0;
+      is_color_sorting_bool = false;
     }
 
     pros::delay(ez::util::DELAY_TIME);
