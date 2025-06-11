@@ -13,7 +13,8 @@ enum roller_states {
   OUTTAKE = 3,
   OUTTAKE_ONLY = 4,
   SCORE = 5,
-  POOP = 6,
+  SCORE_SLOWLY = 6,
+  POOP = 7,
 };
 
 inline roller_states active_roller_state = STOP;

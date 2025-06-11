@@ -7,7 +7,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #pragma once
 
 inline bool is_color_sorting_bool = false;
-inline bool auto_poop_enable_bool = true;
+inline bool auto_poop_enable_bool = false;
 void auto_poop_disable();
 void auto_poop_enable();
 bool auto_poop_enabled();

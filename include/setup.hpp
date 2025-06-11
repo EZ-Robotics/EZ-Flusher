@@ -82,6 +82,7 @@ inline pros::controller_digital_e_t intake_button = pros::E_CONTROLLER_DIGITAL_L
 inline pros::controller_digital_e_t outtake_button = pros::E_CONTROLLER_DIGITAL_L1;
 inline pros::controller_digital_e_t score_button = pros::E_CONTROLLER_DIGITAL_R2;
 inline pros::controller_digital_e_t shift_button = pros::E_CONTROLLER_DIGITAL_R1;
+inline pros::controller_digital_e_t score_slowly_button = pros::E_CONTROLLER_DIGITAL_Y;
 inline pros::controller_digital_e_t auto_poop_enable_button = pros::E_CONTROLLER_DIGITAL_A;
 
 inline void joystick_opcontrol() {

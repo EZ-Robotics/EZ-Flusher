@@ -6,6 +6,8 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "main.h"
 
+int slow_speed = 50;
+
 void conveyor_bottom_set(int input) { conveyor_bottom_antijam.set_motors(input); }
 void conveyor_top_set(int input) { conveyor_top_antijam.set_motors(input); }
 
@@ -18,6 +20,8 @@ void conveyor_bottom_task() {
       conveyor_bottom_set(-127);
     } else if (get_active_roller_state() == SCORE) {
       conveyor_bottom_set(127);
+    } else if (get_active_roller_state() == SCORE_SLOWLY) {
+      conveyor_bottom_set(slow_speed);
     } else if (get_active_roller_state() == POOP) {
       conveyor_bottom_set(127);
     } else {
@@ -35,6 +39,7 @@ void conveyor_top_task() {
   bool last_is_ball = is_ball;
   int is_ball_timer = 0;
   int amount_of_balls = 0;
+  conveyor_top_antijam.disable();
   while (true) {
     last_is_ball = is_ball;
 
@@ -85,6 +90,8 @@ void conveyor_top_task() {
       else
         conveyor_top_set(127);
 
+    } else if (get_active_roller_state() == SCORE_SLOWLY) {
+      conveyor_top_set(slow_speed);
     } else if (get_active_roller_state() == POOP) {
       conveyor_top_antijam.stick_disable();
       amount_of_balls = 0;

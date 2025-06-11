@@ -260,6 +260,8 @@ void opcontrol() {
         set_active_roller_state(POOP);
       else
         set_active_roller_state(SCORE);
+    } else if (master.get_digital(score_slowly_button)) {
+      set_active_roller_state(SCORE_SLOWLY);
     } else if (master.get_digital(intake_button)) {
       set_active_roller_state((roller_states)((int)INTAKE + (int)master.get_digital(shift_button)));
     } else if (master.get_digital(outtake_button)) {

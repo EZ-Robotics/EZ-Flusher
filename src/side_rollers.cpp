@@ -6,7 +6,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "main.h"
 
-int limited_power = 1250;
+int limited_power = 1750;
 int full_power = 2500;
 
 void intake_current_limit() {
@@ -45,6 +45,11 @@ void intake_task() {
 
     // Side rollers are scoring
     if (get_active_roller_state() == SCORE) {
+      output_speed = intake_speed;
+    }
+
+    // Side rollers are scoring slowly
+    else if (get_active_roller_state() == SCORE_SLOWLY) {
       output_speed = intake_speed;
     }
 
