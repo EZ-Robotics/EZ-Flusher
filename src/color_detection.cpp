@@ -6,16 +6,19 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "main.h"
 
+// Current alliance and ball color
 ball_color get_current_ball_color() { return current_ball_color; }
 void set_alliance_color(ball_color input) { current_alliance_color = input; }
 ball_color get_alliance_color() { return current_alliance_color; }
 
+// Functions to set sorting state
 void auto_poop_disable() { auto_poop_enable_bool = false; }
 void auto_poop_enable() { auto_poop_enable_bool = true; }
 bool auto_poop_enabled() { return auto_poop_enable_bool; }
 
 bool is_color_sorting() { return is_color_sorting_bool; }
 
+// Color detection task
 void color_detection_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
 
@@ -93,6 +96,7 @@ void color_detection_task() {
 }
 pros::Task Color_Detection_Task(color_detection_task);  // Create the task, this will cause the function to start running
 
+// Button to toggle color sort in opcontrol
 void color_detection_opcontrol() {
   if (master.get_digital_new_press(auto_poop_enable_button)) {
     if (auto_poop_enabled())

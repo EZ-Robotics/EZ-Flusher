@@ -6,19 +6,21 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 #include "main.h"
 
-int limited_power = 1750;
-int full_power = 2500;
-
+// Limit intake current
+const int limited_power = 1750;
 void intake_current_limit() {
   intake_left.set_current_limit(limited_power);
   intake_right.set_current_limit(limited_power);
 }
 
+// Set intake current to full power
+const int full_power = 2500;
 void intake_full_power() {
   intake_left.set_current_limit(full_power);
   intake_right.set_current_limit(full_power);
 }
 
+// Set intake motors through antijam
 inline void intake_left_set(int input) { intake_left_antijam.set_motors(input); }
 inline void intake_right_set(int input) { intake_right_antijam.set_motors(input); }
 inline void intake_set(int input) {
@@ -26,6 +28,7 @@ inline void intake_set(int input) {
   intake_right_set(input);
 }
 
+// Intake task
 void intake_task() {
   pros::delay(2000);  // Set EZ-Template calibrate before this function starts running
   int output_speed = 0;
