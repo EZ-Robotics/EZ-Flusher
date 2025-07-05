@@ -42,7 +42,7 @@ This code uses EZ-Template, a simple PROS template that handles drive base funct
 ## External Links
 [Reveal Video](https://youtu.be/0-yhN4ntpAA)  
 [Episode 1 Documentary](https://youtu.be/FOxbkzGKC6Q)  
-VEXForum Link: coming soon...
+[VEXForum Link](https://www.vexforum.com/t/flusher-pre-season-reveal-robotics-is-ez/138285)
 Episode 2 Documentary: coming soon...
 
 
